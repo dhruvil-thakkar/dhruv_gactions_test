@@ -24,6 +24,18 @@ body:
       required: true
   - type: input
     attributes:
+      label: Regions
+      description: Region
+      multiple: true
+      options:
+        - us-east-1
+        - us-east-2
+        - us-west-1
+        - us-west-2
+    validations:
+      required: true
+  - type: input
+    attributes:
       label: Excluded Resources
       description: Excluded Resources
     validations:
