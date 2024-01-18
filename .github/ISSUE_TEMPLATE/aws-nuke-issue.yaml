@@ -9,7 +9,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        **Please complete the following form to use the AWS Nuke Servie**
+        **Please complete the following form to use the AWS Nuke Servie. By default all the resources in the regions specified will be nuked. If you specify Target Resources, only those resources will be nuked. If you specify Excluded Resources, then everything else but those excluded resources will be nuked**
   - type: input
     id: account_tonuke
     attributes:
@@ -33,14 +33,14 @@ body:
     id: excluded_resources
     attributes:
       label: Excluded Resources
-      description: Excluded Resources
+      description: By Default, everything is included and nothing is excluded. Enter excluded resource types if you want to 
     validations:
       required: false
   - type: input
-    id: included_resources
+    id: target_resources
     attributes:
-      label: Included Resources
-      description: Included Resources
+      label: Target Resources Types
+      description: By default, everything will be nuked. Enter Target resources if you want to remove just specific resource types. You can find resource types in resource-types File
     validations:
       required: false
   - type: dropdown
