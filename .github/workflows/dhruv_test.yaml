@@ -44,5 +44,4 @@ jobs:
           
       - name: Run-aws-version
         run: |
-          aws --version 
-          shell: bash
+          echo "version=$(aws --version)" >> $GITHUB_OUTPUT
