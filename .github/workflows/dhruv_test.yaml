@@ -21,5 +21,5 @@ jobs:
           echo $excluded_resources
           included_resources=$(echo "$payload_body" |grep -A2 "### Included Resources" | tail -n1)
           echo $included_resources
-          regions=$(echo "$payload_body" | |grep -A2 "### Regions" | tail -n1)
+          regions=$(echo "$payload_body" | grep -A2 "### Regions" | tail -n1)
           echo $regions
