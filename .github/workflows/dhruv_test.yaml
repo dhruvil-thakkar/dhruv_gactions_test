@@ -6,7 +6,7 @@ on:
       - opened
   push:
     branches:
-      - DOS-582_RBNA-630
+      - master
 
 jobs:
   aws-nuke:
