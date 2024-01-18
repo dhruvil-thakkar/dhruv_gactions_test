@@ -34,6 +34,13 @@ jobs:
           echo "account_alias: ${account}\n" >> aws-nuke/aws-nuke-config.yaml
           echo $env_test >> aws-nuke/aws-nuke-config.yaml
           cat aws-nuke/aws-nuke-config.yaml
+      
+      - name: Echo Test
+        run: |
+          echo $env_test >> aws-nuke/aws-nuke-config.yaml
+          echo $env_test >> aws-nuke/aws-nuke-config.yaml
+          echo $env_test >> aws-nuke/aws-nuke-config.yaml
+          cat aws-nuke/aws-nuke-config.yaml
 
       # - name: Download and Extract 
       #   run: |
@@ -63,3 +70,5 @@ jobs:
       #     echo "account_alias: ${account}\n" >> aws-nuke/aws-nuke-config.yaml
       #     echo $env_test >> aws-nuke/aws-nuke-config.yaml
       #     cat aws-nuke/aws-nuke-config.yaml
+
+  
