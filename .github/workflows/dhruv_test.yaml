@@ -4,6 +4,9 @@ on:
   issues:
     types:
       - opened
+  push:
+    branches:
+      - DOS-582_RBNA-630
 
 jobs:
   aws-nuke:
@@ -31,6 +34,14 @@ jobs:
           mkdir aws-nuke
           wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke
           ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
-      #- name: Create Config File
-       # run: |
-          
+
+      - id: install-aws-cli
+        uses: unfor19/install-aws-cli-action@v1
+        with:
+          version: 2                         # default
+          verbose: false                     # default
+          arch: amd64          
+
+            #- name: Create Config File
+            # run: |
+                
