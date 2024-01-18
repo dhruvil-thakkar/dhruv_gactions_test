@@ -1,7 +1,7 @@
 name: Nuke AWS Account
 description: Job to Nuke an AWS Account
 title: "[Nuke]: "
-labels: "nuke"
+labels: ["nuke"]
 assignees:
   - octocat
 
@@ -14,3 +14,7 @@ body:
     attributes:
       label: Account to Nuke AWS Services
       description: Enter the account number from which you want to nuke AWS Services
+  - type: input
+    attributes:
+      label: Account Alias
+      description: Enter the account Alias for which you want to nuke AWS Services
