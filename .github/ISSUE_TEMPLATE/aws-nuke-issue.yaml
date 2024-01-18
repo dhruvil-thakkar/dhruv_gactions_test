@@ -34,8 +34,7 @@ body:
         - label: us-east-2
         - label: us-west-1
         - label: us-west-2
-    validations:
-      required: true
+          required: true
   - type: input
     id: excluded_resources
     attributes:
