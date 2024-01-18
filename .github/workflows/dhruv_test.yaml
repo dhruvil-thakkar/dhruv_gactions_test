@@ -28,6 +28,7 @@ jobs:
           echo $regions
           nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
           echo $nuke_resources
+          env_test="final"
 
       # - name: Download and Extract 
       #   run: |
@@ -55,4 +56,5 @@ jobs:
           mkdir aws-nuke
           echo "account-blocklist: \n" > aws-nuke/aws-nuke-config.yaml
           echo "account_alias: ${account}\n" >> aws-nuke/aws-nuke-config.yaml
+          echo $env_test >> aws-nuke/aws-nuke-config.yaml
           cat aws-nuke/aws-nuke-config.yaml
