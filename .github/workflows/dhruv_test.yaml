@@ -29,23 +29,28 @@ jobs:
           nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
           echo $nuke_resources
 
-      - name: Download and Extract 
-        run: |
-          mkdir aws-nuke
-          wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke
-          ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
+      # - name: Download and Extract 
+      #   run: |
+      #     mkdir aws-nuke
+      #     wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke
+      #     ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
 
-      - name: Install AWS CLI
-        uses: unfor19/install-aws-cli-action@v1
-        with:
-          version: 2                         # default
-          verbose: false                     # default
-          arch: amd64 
+      # - name: Install AWS CLI
+      #   uses: unfor19/install-aws-cli-action@v1
+      #   with:
+      #     version: 2                         # default
+      #     verbose: false                     # default
+      #     arch: amd64 
 
-      - name: AWS Test
+      # - name: AWS Test
+      #   run: |
+      #     aws s3 ls 
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: 'us-west-2'
+
+      - name: Create AWS NUKE Config File
         run: |
-          aws s3 ls 
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: 'us-west-2'
+          echo "account-blocklist: \n" > aws-nuke/aws-nuke-config.yaml
+          echo "account_alias: \n" >> aws-nuke/aws-nuke-config.yaml
