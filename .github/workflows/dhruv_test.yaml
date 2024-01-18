@@ -10,5 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Log Event Payload
-        run: echo "$GITHUB_EVENT_PATH"
+        run: |
+          payload_body="${{ github.event.issue.body }}"
+          echo "$payload_body"
           
