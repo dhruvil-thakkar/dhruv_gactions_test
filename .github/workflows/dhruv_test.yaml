@@ -6,7 +6,7 @@ on:
       - opened
 
 jobs:
-  hello:
+  aws-nuke:
     runs-on: ubuntu-latest
     steps:
       - name: Log Event Payload
