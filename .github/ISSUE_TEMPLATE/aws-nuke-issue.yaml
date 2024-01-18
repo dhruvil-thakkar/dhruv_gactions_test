@@ -7,4 +7,7 @@ body:
     attributes:
       value: |
         **Please complete the following form to use the AWS Nuke Servie**
-  
+  - type: input
+    attributes:
+      label: Account to Nuke AWS Services
+      description: Enter the account number from which you want to nuke AWS Services
