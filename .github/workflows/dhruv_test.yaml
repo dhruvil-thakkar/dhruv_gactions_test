@@ -12,6 +12,14 @@ jobs:
       - name: Log Event Payload
         run: |
           payload_body="${{ github.event.issue.body }}"
-          #echo "$payload_body"
+          echo "$payload_body"
           account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
           echo $account
+          account_alias=$(echo "$payload_body" |grep -A2 "### Account Alias" | tail -n1)
+          echo $account_alias
+          excluded_resources=$(echo "$payload_body" |grep -A2 "### ### Excluded Resources" | tail -n1)
+          echo $excluded_resources
+          included_resources=$(echo "$payload_body" |grep -A2 "### Included Resources" | tail -n1)
+          echo $included_resources
+          regions=$(echo "$payload_body" | grep -o "\[X\] [A-Z0-9]*" | cut -d ' ' -f 2 | tr '\n' '|')
+          echo $regions
