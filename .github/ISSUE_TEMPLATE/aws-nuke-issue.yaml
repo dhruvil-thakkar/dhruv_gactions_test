@@ -24,16 +24,11 @@ body:
       description: Enter the account Alias for which you want to nuke AWS Services
     validations:
       required: true
-  - type: checkboxes
+  - type: input
     id: regions
     attributes:
       label: Regions
-      description: Region
-      options:
-        - label: us-east-1
-        - label: us-east-2
-        - label: us-west-1
-        - label: us-west-2
+      description: Space limit regions for input
   - type: input
     id: excluded_resources
     attributes:
