@@ -12,5 +12,6 @@ jobs:
       - name: Log Event Payload
         run: |
           payload_body="${{ github.event.issue.body }}"
-          echo "$payload_body"
-          echo account_tonuke
+          #echo "$payload_body"
+          account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
+          echo $account
