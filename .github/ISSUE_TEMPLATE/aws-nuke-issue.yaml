@@ -1,6 +1,9 @@
 name: Nuke AWS Account
 description: Job to Nuke an AWS Account
 title: "[Nuke]: "
+labels: "nuke"
+assignees:
+  - octocat
 
 body:
   - type: markdown
