@@ -44,5 +44,4 @@ jobs:
 
       - name: AWS Test
         run: |
-          aws --version
-          aws -h
+          aws s3 help
