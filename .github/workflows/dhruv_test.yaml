@@ -41,3 +41,8 @@ jobs:
           version: 2                         # default
           verbose: false                     # default
           arch: amd64 
+
+      - name: AWS Test
+        run: |
+          aws --version
+          aws -h
