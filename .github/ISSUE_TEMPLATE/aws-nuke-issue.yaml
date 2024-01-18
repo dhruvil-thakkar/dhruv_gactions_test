@@ -11,18 +11,21 @@ body:
       value: |
         **Please complete the following form to use the AWS Nuke Servie**
   - type: input
+    id: account_tonuke
     attributes:
       label: Account to Nuke AWS Services
       description: Enter the account number from which you want to nuke AWS Services
     validations:
       required: true
   - type: input
+    id: accountalias_tonuke
     attributes:
       label: Account Alias
       description: Enter the account Alias for which you want to nuke AWS Services
     validations:
       required: true
-  - type: input
+  - type: checkboxes
+    id: regions
     attributes:
       label: Regions
       description: Region
@@ -34,12 +37,14 @@ body:
     validations:
       required: true
   - type: input
+    id: excluded_resources
     attributes:
       label: Excluded Resources
       description: Excluded Resources
     validations:
       required: false
   - type: input
+    id: included_resources
     attributes:
       label: Included Resources
       description: Included Resources
