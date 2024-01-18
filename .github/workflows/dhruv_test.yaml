@@ -36,13 +36,10 @@ jobs:
           ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
 
       - name: install-aws-cli
-        uses: unfor19/install-aws-cli-action@v1
-        with:
-          version: 2                         # default
-          verbose: false                     # default
-          arch: amd64          
-          
-      - name: Run-aws-version
         run: |
-          /usr/local/bin/bash version
-          shell: bash
+          sudo apt-get update
+          sudo apt-get install -y install-aws-cli
+
+      - name: Run AWS CLi Command
+        run: |
+          aws --version
