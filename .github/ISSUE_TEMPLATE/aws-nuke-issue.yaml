@@ -29,8 +29,6 @@ body:
     attributes:
       label: Regions
       description: Region
-      validations:
-        required: true
       options:
         - label: us-east-1
         - label: us-east-2
