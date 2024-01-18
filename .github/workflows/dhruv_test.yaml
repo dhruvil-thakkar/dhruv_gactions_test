@@ -41,6 +41,8 @@ jobs:
           version: 2                         # default
           verbose: false                     # default
           arch: amd64          
+          run: |
+            aws --version
 
             #- name: Create Config File
             # run: |
