@@ -28,8 +28,9 @@ jobs:
 
       - name: Download and Extract 
         run: |
-          wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C $HOME/bin
-          aws-nuke-v2.25.0-linux-amd64 --help
+          mkdir aws-nuke
+          wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke
+          ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
       #- name: Create Config File
        # run: |
           
