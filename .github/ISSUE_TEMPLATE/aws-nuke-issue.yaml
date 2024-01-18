@@ -52,4 +52,4 @@ body:
       options:
         - "No"
         - "Yes"
-      default: No
+      default: 0
