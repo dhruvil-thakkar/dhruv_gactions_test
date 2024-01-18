@@ -43,4 +43,13 @@ body:
       description: Included Resources
     validations:
       required: false
-
+  - type: dropdown
+    id: nuke-resources
+    attributes:
+      label: Nuke Resources?
+      description: By Default - It will run a dry-run and won't nuke resources. Select Yes below to actually nuke resources
+      multiple: false
+      options:
+        - "No"
+        - "Yes"
+      default: No

@@ -23,3 +23,9 @@ jobs:
           echo $included_resources
           regions=$(echo "$payload_body" | grep -A2 "### Regions" | tail -n1)
           echo $regions
+          nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
+          echo $nuke_resources
+
+      #- name: Create Config File
+       # run: |
+          
