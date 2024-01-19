@@ -21,7 +21,6 @@ jobs:
           text_arr=($text)
           for each in "${text_arr[@]}"
             do 
-              echo $each
               echo "  - $each" >> ./aws-nuke/aws-nuke-config.yaml
             done 
           }
