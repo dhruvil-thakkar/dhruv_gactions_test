@@ -18,34 +18,34 @@ jobs:
           #echo "$payload_body"
           
           account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
-          # echo $account
+          echo $account
 
           excluded_resources=$(echo "$payload_body" |grep -A2 "### Excluded Resources" | tail -n1)
-          # echo $excluded_resources
+          echo $excluded_resources
 
           included_resources=$(echo "$payload_body" |grep -A2 "### Target Resources" | tail -n1)
-          # echo $target_resources
+          echo $target_resources
           
           regions=$(echo "$payload_body" | grep -A2 "### Regions" | tail -n1)
-          # echo $regions
+          echo $regions
           
           nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
-          # echo $nuke_resources
+          echo $nuke_resources
 
           cat /home/runner/work/_temp/f64b6909-ecd7-45b1-89ff-7caebcb749c2.sh
           
           mkdir -p aws-nuke
 
-          update_file() {
-              text=$1
-              text_arr=($text)
-              for each in "${text_arr[@]}"
-                do echo "  - $each" >> ./aws-nuke/aws-nuke-config.yaml
-              done }
+          # update_file() {
+          #     text=$1
+          #     text_arr=($text)
+          #     for each in "${text_arr[@]}"
+          #       do echo "  - $each" >> ./aws-nuke/aws-nuke-config.yaml
+          #     done }
 
           echo -e "regions:\n - global" > ./aws-nuke/aws-nuke-config.yaml
 
-          update_file $regions
+          # update_file $regions
 
           echo "" >> ./aws-nuke/aws-nuke-config.yaml
 
@@ -55,7 +55,7 @@ jobs:
 
           echo -e "resource-types:\n targets:" >> ./aws-nuke/aws-nuke-config.yaml
 
-          update_file $target_resources
+          # update_file $target_resources
 
           echo -e "\n excludes:" >> ./aws-nuke/aws-nuke-config.yaml
 
