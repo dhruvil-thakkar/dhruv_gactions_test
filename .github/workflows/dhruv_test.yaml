@@ -17,8 +17,9 @@ jobs:
           mkdir -p aws-nuke
           touch ./aws-nuke/aws-nuke-config.yaml
           update_file() {
-          text=$1
-          text_arr=($text)
+          # text=$1
+          # text_arr=($text)
+          text_arr = $1
           for each in "${text_arr[@]}"
             do 
               echo "  - $each" >> ./aws-nuke/aws-nuke-config.yaml
