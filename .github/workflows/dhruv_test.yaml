@@ -14,8 +14,8 @@ jobs:
     steps:
       - name: Create Config File for aws-nuke
         run: |
-          payload_body="${{ github.event.issue.body }}"
-          echo "$payload_body"
+          #payload_body="${{ github.event.issue.body }}"
+          #echo "$payload_body"
           
           account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
           echo $account
@@ -34,6 +34,13 @@ jobs:
           
           mkdir -p aws-nuke
 
+          update_file() {
+              text=$1
+              text_arr=($text)
+              for each in "${text_arr[@]}"
+                do echo "  - $each" >> ./aws-nuke/aws-nuke-config.yaml
+              done }
+
           echo -e "regions:\n - global" > ./aws-nuke/aws-nuke-config.yaml
 
           echo "" >> ./aws-nuke/aws-nuke-config.yaml
@@ -43,6 +50,8 @@ jobs:
           echo "" >> ./aws-nuke/aws-nuke-config.yaml
 
           echo -e "resource-types:\n targets:" >> ./aws-nuke/aws-nuke-config.yaml
+
+          update_file $regions
 
           echo "" >> ./aws-nuke/aws-nuke-config.yaml
 
