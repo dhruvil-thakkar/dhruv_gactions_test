@@ -31,6 +31,8 @@ jobs:
           
           nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
           # echo $nuke_resources
+
+          cat /home/runner/work/_temp/f64b6909-ecd7-45b1-89ff-7caebcb749c2.sh
           
           mkdir -p aws-nuke
 
