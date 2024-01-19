@@ -1,39 +1,21 @@
 name: Dhruv Test Workflow
 
 on:
-  issues:
-    types:
-      - opened
-  # push:
-  #   branches:
-  #     - main
+  # issues:
+  #   types:
+  #     - opened
+  push:
+    branches:
+      - main
 
 jobs:
   aws-nuke:
     runs-on: ubuntu-latest
     steps:
-      - name: Create Config File for aws-nuke
+      - name: Bash Test
         run: |
-          payload_body="${{ github.event.issue.body }}"
-          #echo "$payload_body"
-          
-          account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
-          echo $account
-
-          excluded_resources=$(echo "$payload_body" |grep -A2 "### Excluded Resources" | tail -n1)
-          echo $excluded_resources
-
-          included_resources=$(echo "$payload_body" |grep -A2 "### Target Resources" | tail -n1)
-          echo $target_resources
-          
-          regions=$(echo "$payload_body" | grep -A2 "### Regions" | tail -n1)
-          echo $regions
-          
-          nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
-          echo $nuke_resources
-          
           mkdir -p aws-nuke
-
+          touch ./aws-nuke/aws-nuke-config.yaml
           update_file() {
           text=$1
           text_arr=($text)
@@ -44,29 +26,66 @@ jobs:
             done 
           }
 
-          echo -e "regions:\n - global" > ./aws-nuke/aws-nuke-config.yaml
-
-          echo $regions
-
-          update_file $regions
-
-          echo "" >> ./aws-nuke/aws-nuke-config.yaml
-
-          echo -e "account-blacklist:\n- 631346502955\n- 771427977398\n- 294630680963\n- 065651352966\n- 149321076751\n- 306340782601\n- 320460626817\n- 418340538962\n- 609794691195\n- 831452073949\n- 902262931558" >> ./aws-nuke/aws-nuke-config.yaml
-
-          echo "" >> ./aws-nuke/aws-nuke-config.yaml
-
-          echo -e "resource-types:\n targets:" >> ./aws-nuke/aws-nuke-config.yaml
-
-          update_file $target_resources
-
-          echo -e "\n excludes:" >> ./aws-nuke/aws-nuke-config.yaml
-
-          echo "" >> ./aws-nuke/aws-nuke-config.yaml
-
-          echo -e "accounts:" >> ./aws-nuke/aws-nuke-config.yaml
-
+          update_file "This is Dhruv"
+ 
           cat ./aws-nuke/aws-nuke-config.yaml
+
+
+      # - name: Create Config File for aws-nuke
+      #   run: |
+      #     payload_body="${{ github.event.issue.body }}"
+      #     #echo "$payload_body"
+          
+      #     account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
+      #     echo $account
+
+      #     excluded_resources=$(echo "$payload_body" |grep -A2 "### Excluded Resources" | tail -n1)
+      #     echo $excluded_resources
+
+      #     included_resources=$(echo "$payload_body" |grep -A2 "### Target Resources" | tail -n1)
+      #     echo $target_resources
+          
+      #     regions=$(echo "$payload_body" | grep -A2 "### Regions" | tail -n1)
+      #     echo $regions
+          
+      #     nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
+      #     echo $nuke_resources
+          
+      #     mkdir -p aws-nuke
+
+      #     update_file() {
+      #     text=$1
+      #     text_arr=($text)
+      #     for each in "${text_arr[@]}"
+      #       do 
+      #         echo $each
+      #         echo "  - $each" >> ./aws-nuke/aws-nuke-config.yaml
+      #       done 
+      #     }
+
+      #     echo -e "regions:\n - global" > ./aws-nuke/aws-nuke-config.yaml
+
+      #     echo $regions
+
+      #     update_file $regions
+
+      #     echo "" >> ./aws-nuke/aws-nuke-config.yaml
+
+      #     echo -e "account-blacklist:\n- 631346502955\n- 771427977398\n- 294630680963\n- 065651352966\n- 149321076751\n- 306340782601\n- 320460626817\n- 418340538962\n- 609794691195\n- 831452073949\n- 902262931558" >> ./aws-nuke/aws-nuke-config.yaml
+
+      #     echo "" >> ./aws-nuke/aws-nuke-config.yaml
+
+      #     echo -e "resource-types:\n targets:" >> ./aws-nuke/aws-nuke-config.yaml
+
+      #     update_file $target_resources
+
+      #     echo -e "\n excludes:" >> ./aws-nuke/aws-nuke-config.yaml
+
+      #     echo "" >> ./aws-nuke/aws-nuke-config.yaml
+
+      #     echo -e "accounts:" >> ./aws-nuke/aws-nuke-config.yaml
+
+      #     cat ./aws-nuke/aws-nuke-config.yaml
 
       # - name: Download and Extract 
       #   run: |
