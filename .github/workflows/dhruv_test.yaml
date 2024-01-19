@@ -44,6 +44,10 @@ jobs:
 
           echo -e "resource-types:\n targets:" >> ./aws-nuke/aws-nuke-config.yaml
 
+          echo "" >> ./aws-nuke/aws-nuke-config.yaml
+
+          echo -e "accounts:" >> ./aws-nuke/aws-nuke-config.yaml
+
           cat ./aws-nuke/aws-nuke-config.yaml
 
       # - name: Download and Extract 
