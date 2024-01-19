@@ -4,9 +4,9 @@ on:
   issues:
     types:
       - opened
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   aws-nuke:
@@ -52,6 +52,8 @@ jobs:
           echo "" >> ./aws-nuke/aws-nuke-config.yaml
 
           echo -e "resource-types:\n targets:" >> ./aws-nuke/aws-nuke-config.yaml
+
+          update_file $target_resources
 
           echo -e "\n excludes:" >> ./aws-nuke/aws-nuke-config.yaml
 
