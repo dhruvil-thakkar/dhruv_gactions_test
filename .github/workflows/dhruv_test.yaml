@@ -38,10 +38,14 @@ jobs:
               text=$1
               text_arr=($text)
               for each in "${text_arr[@]}"
-                do echo "  - $each" >> ./aws-nuke/aws-nuke-config.yaml
+                do 
+                  echo $each
+                  echo "  - $each" >> ./aws-nuke/aws-nuke-config.yaml
               done }
 
           echo -e "regions:\n - global" > ./aws-nuke/aws-nuke-config.yaml
+
+          echo $regions
 
           update_file $regions
 
