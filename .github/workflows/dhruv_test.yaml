@@ -36,9 +36,9 @@ jobs:
 
           echo "test"
 
-          echo -e "regions:\n - global" > /aws-nuke/aws-nuke-config.yaml
+          echo -e "regions:\n - global" > ./aws-nuke/aws-nuke-config.yaml
 
-          cat /aws-nuke/aws-nuke-config.yaml
+          cat ./aws-nuke/aws-nuke-config.yaml
 
       # - name: Download and Extract 
       #   run: |
