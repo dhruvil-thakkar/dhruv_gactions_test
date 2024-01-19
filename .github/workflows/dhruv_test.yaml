@@ -34,6 +34,8 @@ jobs:
           
           mkdir -p aws-nuke
 
+          echo "test"
+
           echo -e "regions:\n - global" > /aws-nuke/aws-nuke-config.yaml
 
           cat /aws-nuke/aws-nuke-config.yaml
