@@ -62,8 +62,8 @@ jobs:
           included_resources=$(echo "$payload_body" |grep -A2 "### Target Resources" | tail -n1)
           echo $target_resources
           
-          regions=$(echo "$payload_body" | grep -A2 "### Regions" | tail -n1)
-          echo $regions
+          aws_regions=$(echo "$payload_body" | grep -A2 "### Regions" | tail -n1)
+          echo $aws_regions
           
           nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
           echo $nuke_resources
@@ -72,7 +72,7 @@ jobs:
 
           echo -e "regions:\n - global" > ./aws-nuke/aws-nuke-config.yaml
 
-          for each in $regions
+          for each in $aws_regions
             do 
               echo -a "\n - $each"  > ./aws-nuke/aws-nuke-config.yaml
             done
