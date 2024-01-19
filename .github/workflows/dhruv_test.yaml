@@ -34,9 +34,9 @@ jobs:
           
           mkdir -p aws-nuke
 
-          echo "test"
-
           echo -e "regions:\n - global" > ./aws-nuke/aws-nuke-config.yaml
+
+          echo -e "account-blocklist:\n- 631346502955\n- 771427977398" >> ./aws-nuke/aws-nuke-config.yaml
 
           cat ./aws-nuke/aws-nuke-config.yaml
 
