@@ -36,7 +36,7 @@ jobs:
 
           echo -e "regions:\n - global" > ./aws-nuke/aws-nuke-config.yaml
 
-          echo -e "account-blocklist:\n- 631346502955\n- 771427977398" \n- 294630680963\n- 065651352966\n- 149321076751\n- 306340782601\n- 320460626817\n- 418340538962\n- 609794691195\n- 831452073949\n- 902262931558 >> ./aws-nuke/aws-nuke-config.yaml
+          echo -e "account-blocklist:\n- 631346502955\n- 771427977398\n- 294630680963\n- 065651352966\n- 149321076751\n- 306340782601\n- 320460626817\n- 418340538962\n- 609794691195\n- 831452073949\n- 902262931558 >> ./aws-nuke/aws-nuke-config.yaml
 
           cat ./aws-nuke/aws-nuke-config.yaml
 
