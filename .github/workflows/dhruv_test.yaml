@@ -1,12 +1,12 @@
 name: Dhruv Test Workflow
 
 on:
-  issues:
-    types:
-      - opened
-  # push:
-  #   branches:
-  #     - main
+  # issues:
+  #   types:
+  #     - opened
+  push:
+    branches:
+      - main
 
 jobs:
   aws-nuke:
@@ -39,7 +39,7 @@ jobs:
           regions=$(echo "$payload_body" | grep -A2 "### Regions" | tail -n1)
           echo $regions
 
-          update_file $regions
+          update_file "us-east-1 us-west-2 us-east-3"
 
           cat ./aws-nuke/aws-nuke-config.yaml
 
