@@ -16,44 +16,44 @@ jobs:
         run: |
           payload_body="${{ github.event.issue.body }}"
           echo "$payload_body"
+          
           account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
           echo $account
-          account_alias=$(echo "$payload_body" |grep -A2 "### Account Alias" | tail -n1)
-          echo $account_alias
+
           excluded_resources=$(echo "$payload_body" |grep -A2 "### Excluded Resources" | tail -n1)
           echo $excluded_resources
+
           included_resources=$(echo "$payload_body" |grep -A2 "### Target Resources" | tail -n1)
           echo $target_resources
+          
           regions=$(echo "$payload_body" | grep -A2 "### Regions" | tail -n1)
           echo $regions
+          
           nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
           echo $nuke_resources
-          env_test="final"
-          mkdir aws-nuke
-          echo -e "account-blocklist:\n -"
-      
-      
+          
+          mkdir -p aws-nuke
 
-      # - name: Download and Extract 
-      #   run: |
-      #     mkdir aws-nuke
-      #     wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke
-      #     ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
+      - name: Download and Extract 
+        run: |
+          mkdir -p aws-nuke
+          wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke
+          ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
 
-      # - name: Install AWS CLI
-      #   uses: unfor19/install-aws-cli-action@v1
-      #   with:
-      #     version: 2                         # default
-      #     verbose: false                     # default
-      #     arch: amd64 
+      - name: Install AWS CLI
+        uses: unfor19/install-aws-cli-action@v1
+        with:
+          version: 2                         # default
+          verbose: false                     # default
+          arch: amd64 
 
-      # - name: AWS Test
-      #   run: |
-      #     aws s3 ls 
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     AWS_DEFAULT_REGION: 'us-west-2'
+      - name: AWS Test
+        run: |
+          aws s3 ls 
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: 'us-west-2'
 
 
 
