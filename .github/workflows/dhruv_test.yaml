@@ -12,7 +12,7 @@ jobs:
   aws-nuke:
     runs-on: ubuntu-latest
     steps:
-      - name: Log Event Payload
+      - name: Create Config File for aws-nuke
         run: |
           payload_body="${{ github.event.issue.body }}"
           echo "$payload_body"
@@ -34,26 +34,30 @@ jobs:
           
           mkdir -p aws-nuke
 
-      - name: Download and Extract 
-        run: |
-          mkdir -p aws-nuke
-          wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke
-          ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
+          echo -e "regions:\n - global" > /aws-nuke/aws-nuke-config.yaml
 
-      - name: Install AWS CLI
-        uses: unfor19/install-aws-cli-action@v1
-        with:
-          version: 2                         # default
-          verbose: false                     # default
-          arch: amd64 
+          cat /aws-nuke/aws-nuke-config.yaml
 
-      - name: AWS Test
-        run: |
-          aws s3 ls 
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: 'us-west-2'
+      # - name: Download and Extract 
+      #   run: |
+      #     mkdir -p aws-nuke
+      #     wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke
+      #     ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
+
+      # - name: Install AWS CLI
+      #   uses: unfor19/install-aws-cli-action@v1
+      #   with:
+      #     version: 2                         # default
+      #     verbose: false                     # default
+      #     arch: amd64 
+
+      # - name: AWS Test
+      #   run: |
+      #     aws s3 ls 
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: 'us-west-2'
 
 
 
