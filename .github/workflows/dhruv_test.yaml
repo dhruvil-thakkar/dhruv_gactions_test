@@ -1,12 +1,12 @@
 name: Dhruv Test Workflow
 
 on:
-  # issues:
-  #   types:
-  #     - opened
-  push:
-    branches:
-      - main
+  issues:
+    types:
+      - opened
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   aws-nuke:
@@ -29,12 +29,26 @@ jobs:
  
           cat ./aws-nuke/aws-nuke-config.yaml
 
+          payload_body="${{ github.event.issue.body }}"
+          #echo "$payload_body"
+          
+          account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
+          echo $account
+
+           # regions="us-east-1 us-west-2 us-west-3"
+          regions=$(echo "$payload_body" | grep -A2 "### Regions" | tail -n1)
+          echo $regions
+
+          update_file $regions
+
+          cat ./aws-nuke/aws-nuke-config.yaml
+
 
       # - name: Create Config File for aws-nuke
       #   run: |
       #     update_file() {
       #     text=$1
-      #     text_arr=($text)
+      #     text_arr=($text).1
       #     for each in "${text_arr[@]}"
       #       do 
       #         echo $each
