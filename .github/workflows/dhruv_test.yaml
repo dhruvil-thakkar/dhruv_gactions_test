@@ -32,6 +32,16 @@ jobs:
 
       - name: Create Config File for aws-nuke
         run: |
+          update_file() {
+          text=$1
+          text_arr=($text)
+          for each in "${text_arr[@]}"
+            do 
+              echo $each
+              echo "  - $each" >> ./aws-nuke/aws-nuke-config.yaml
+            done 
+          }
+          
           payload_body="${{ github.event.issue.body }}"
           #echo "$payload_body"
           
@@ -52,16 +62,6 @@ jobs:
           echo $nuke_resources
           
           mkdir -p aws-nuke
-
-          update_file() {
-          text=$1
-          text_arr=($text)
-          for each in "${text_arr[@]}"
-            do 
-              echo $each
-              echo "  - $each" >> ./aws-nuke/aws-nuke-config.yaml
-            done 
-          }
 
           echo -e "regions:\n - global" > ./aws-nuke/aws-nuke-config.yaml
 
