@@ -96,8 +96,6 @@ jobs:
 
           echo -e "resource-types:\n targets:" >> ./aws-nuke/aws-nuke-config.yaml
 
-          update_file $target_resources
-
           echo -e "\n excludes:" >> ./aws-nuke/aws-nuke-config.yaml
 
           echo "" >> ./aws-nuke/aws-nuke-config.yaml
