@@ -39,9 +39,10 @@ jobs:
            # regions="us-east-1 us-west-2 us-west-3"
           regions=$(echo "$payload_body" | grep -A2 "### Regions" | tail -n1)
           echo $regions
-
-          update_file "us-east-1 us-west-2 us-east-3"
-          update_file $regions
+          
+          for each in $regions
+            do echo $each
+          done
 
           cat ./aws-nuke/aws-nuke-config.yaml
 
