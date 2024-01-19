@@ -35,13 +35,14 @@ jobs:
           mkdir -p aws-nuke
 
           update_file() {
-              text=$1
-              text_arr=($text)
-              for each in "${text_arr[@]}"
-                do 
-                  echo $each
-                  echo "  - $each" >> ./aws-nuke/aws-nuke-config.yaml
-              done }
+          text=$1
+          text_arr=($text)
+          for each in "${text_arr[@]}"
+            do 
+              echo $each
+              echo "  - $each" >> ./aws-nuke/aws-nuke-config.yaml
+            done 
+          }
 
           echo -e "regions:\n - global" > ./aws-nuke/aws-nuke-config.yaml
 
