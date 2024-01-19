@@ -74,7 +74,7 @@ jobs:
 
           for each in $aws_regions
             do 
-              echo -e "\n - $each"  > ./aws-nuke/aws-nuke-config.yaml
+              echo -e "\n - $each"  >> ./aws-nuke/aws-nuke-config.yaml
             done
           
 
