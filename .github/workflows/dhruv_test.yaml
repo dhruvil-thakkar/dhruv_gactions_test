@@ -99,8 +99,8 @@ jobs:
         run: | 
           payload_body="${{ github.event.issue.body }}"
           nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
-                    
-          if ${nuke_resources} = "Yes"
+
+          if [ ${nuke_resources} == "Yes" ]
           then
             echo "Running AWS Nuke. This will delete resources"
           else
