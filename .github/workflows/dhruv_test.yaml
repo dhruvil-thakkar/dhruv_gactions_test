@@ -16,7 +16,7 @@ jobs:
         run: |
 
           payload_body="${{ github.event.issue.body }}"
-          echo "$payload_body"
+          #echo "$payload_body"
           
           account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
           echo $account
@@ -94,6 +94,10 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: 'us-west-2'
 
+
+      - name: Run aws-nuke
+        run: | 
+          echo $nuke_resources
 
 
   
