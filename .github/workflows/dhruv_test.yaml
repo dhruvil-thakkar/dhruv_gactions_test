@@ -97,6 +97,8 @@ jobs:
 
       - name: Run aws-nuke
         run: | 
+          nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
+          echo $nuke_resources
           echo $nuke_resources
 
 
