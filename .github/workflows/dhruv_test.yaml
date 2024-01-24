@@ -47,9 +47,9 @@ jobs:
 
       - name: Run aws-nuke
         run: | 
-          nuke_resources = "No"
-          echo $nuke_resources
-          
+          nuke_resources="No"
+          echo -e $nuke_resources
+
           if [ ${nuke_resources} == "Yes" ]
           then
             echo "Running AWS Nuke. This will delete resources"
