@@ -47,9 +47,9 @@ jobs:
 
       - name: Run aws-nuke
         run: | 
-          payload_body="${{ github.event.issue.body }}"
-          nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
-
+          nuke_resources = "No"
+          echo $nuke_resources
+          
           if [ ${nuke_resources} == "Yes" ]
           then
             echo "Running AWS Nuke. This will delete resources"
