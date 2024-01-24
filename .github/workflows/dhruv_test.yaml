@@ -31,7 +31,6 @@ jobs:
           verbose: false                     # default
           arch: amd64 
 
-
       - name: AWS CLI Test
         run: |
           aws s3 ls 
