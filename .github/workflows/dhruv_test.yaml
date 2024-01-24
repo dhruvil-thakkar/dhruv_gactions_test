@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+
       - name: Download and Extract 
         run: |
           mkdir -p aws-nuke
@@ -31,6 +35,10 @@ jobs:
       - name: AWS CLI Test
         run: |
           aws s3 ls 
+          ls -la 
+          ls -la config/
+          ls -la ./aws-nuke/
+          
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

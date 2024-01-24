@@ -1,0 +1,13 @@
+---
+regions:
+  - "us-east-2"
+account-blacklist:
+
+resource-types:
+  # only nuke these resources
+  targets:
+  - EC2Instance
+  excludes:
+  - EC2Volume
+accounts:
+  381492150661: {}

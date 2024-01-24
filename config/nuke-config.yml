@@ -1,0 +1,30 @@
+---
+regions:
+  - "us-west-1"
+  - "us-west-2"
+  - "us-east-1"
+  - "us-east-2"
+account-blacklist:
+
+resource-types:
+  #  only nuke these resources
+  targets:
+
+  - EC2Image
+  - EC2Instance
+  - EC2Volume
+  #- EC2SecurityGroup
+  - EC2Snapshot
+  - S3Bucket
+  - S3Object
+  - RDSDBCluster
+  #- RDSDBClusterParameterGroup
+  #- RDSDBParameterGroup
+  - RDSDBSubnetGroup
+  - RDSInstance
+  - RDSSnapshot
+  - DynamoDBTableItem
+  - DynamoDBTable
+
+accounts:
+  381492150661: {}
