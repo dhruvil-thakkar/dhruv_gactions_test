@@ -21,7 +21,7 @@ jobs:
     steps:
 
       - name: Set Environment Variable
-        run: echo "TO_RUN=No >> $GITHUB_ENV
+        run: echo "TO_RUN=No" >> $GITHUB_ENV
              echo "TO_NUKE=Yes" >> $GITHUB_ENV
 
       - name: Use Environment Variable
