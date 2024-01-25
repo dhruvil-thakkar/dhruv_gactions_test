@@ -23,29 +23,21 @@ jobs:
          run: |
            echo "RUN_TEST=No" >> $GITHUB_ENV 
            echo "NUKE_TEST=No" >> $GITHUB_ENV
-           echo "${{ env.RUN_TEST }}"
-           echo "${{ env.NUKE_TEST }}"
-           echo "Hi"
 
        - name: Get Variables
          run: |
            echo "${{ env.RUN_TEST }}"
            echo "${{ env.NUKE_TEST }}"
 
-      # - name: Set up Environment Variables
-      #   run: |
-          # echo "RUN_TEST=No" >> $GITHUB_ENV
-          # echo "NUKE_TEST=No" >> $GITHUB_ENV
-          # echo $RUN_TEST
-          # echo "${{ env.RUN_TEST }}"
-      
-          # TODAYS_DATE=$(date +%d)
-          # echo -e "Todays Date is: $TODAYS_DATE"
-          # DAY_TO_RUN=$(date -d "`date -d"+1month" +%Y%m01` -1 week" +%d)
-          # echo -e "The day a week before the first is: $DAY_TO_RUN"
+       - name: GET Date
+         run: |
+          TODAYS_DATE=$(date +%d)
+          echo -e "Todays Date is: $TODAYS_DATE"
+          DAY_TO_RUN=$(date -d "`date -d"+1month" +%Y%m01` -1 week" +%d)
+          echo -e "The day a week before the first is: $DAY_TO_RUN"
 
-          # echo -e "TO_RUN Value is: ${{ env.TO_RUN}}"
-          # echo -e "TO_NUKE Value is: ${{ env.TO_NUKE}}"
+          echo -e "TO_RUN Value is: ${{ env.RUN_TEST }}"
+          echo -e "TO_NUKE Value is: ${{ env.NUKE_TEST }}"
           
           # if [ $TODAYS_DATE == $DAY_TO_RUN ]
           #   then
