@@ -19,41 +19,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:          
-       - name: Setup Environment Variables
-         run: |
-           echo "RUN_TEST=No" >> $GITHUB_ENV 
-           echo "NUKE_TEST=No" >> $GITHUB_ENV
-
-       - name: Get Variables
-         run: |
-           echo "${{ env.RUN_TEST }}"
-           echo "${{ env.NUKE_TEST }}"
-
-       - name: GET Date
+       - name: GET Date and Check 
          run: |
           TODAYS_DATE=$(date +%d)
+          DATE_TO_NUKE=1
           echo -e "Todays Date is: $TODAYS_DATE"
           DAY_TO_RUN=$(date -d "`date -d"+1month" +%Y%m01` -1 week" +%d)
           echo -e "The day a week before the first is: $DAY_TO_RUN"
 
-          echo -e "TO_RUN Value is: ${{ env.RUN_TEST }}"
-          echo -e "TO_NUKE Value is: ${{ env.NUKE_TEST }}"
+          # echo -e "TO_RUN Value is: ${{ env.RUN_TEST }}"
+          # echo -e "TO_NUKE Value is: ${{ env.NUKE_TEST }}"
           
-          # if [ $TODAYS_DATE == $DAY_TO_RUN ]
-          #   then
-          #     echo "TEST=Yes" >> $GITHUB_ENV
-          #     echo "TO_RUN=Yes" >> $GITHUB_ENV
-          #     echo "Inside if"
-          #     echo ${{ env.TO_RUN }}
-          #     echo $TEST
-          #     echo ${{ env.TEST }}
-          # fi
+          if [ $TODAYS_DATE == $DAY_TO_RUN ]
+            then
+              echo "TO_RUN=Yes" >> $GITHUB_ENV
+          elif [ $TODAYS_DATE == $DATE_TO_NUKE ]
+            then
+              echo "TO_NUKE=Yes" >> $GITHUB_ENV
+          else
+              echo "Not The Day to RUN or Not the Day to Nuke."
+          fi
+
+       - name: Checkout code
+         uses: actions/checkout@v4
+
+       - name: Check value
+         run: |
+           echo ${{ env.TO_RUN }}
+           echo ${{ env.TO_NUKE }}
 
 
 
 
-      # - name: Checkout code
-      #   uses: actions/checkout@v4
 
       # - name: Download and Extract 
       #   run: |
