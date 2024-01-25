@@ -22,11 +22,9 @@ jobs:
 
       - name: Set Environment Variable
         run: echo "TO_RUN=No" >> $GITHUB_ENV
-             echo "TO_NUKE=Yes" >> $GITHUB_ENV
 
       - name: Use Environment Variable
-        run: echo "Value of TO_NUKE is ${{ env.TO_NUKE }}"
-             echo "Value of TO_RUN is ${{ env.TO_RUN }}"
+        run: echo "Value of TO_RUN is ${{ env.TO_RUN }}"
       
       # - name: Set up Environment Variables
       #   run: |
