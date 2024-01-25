@@ -1,23 +1,23 @@
 name: Dhruv Test Workflow
 
 on:
-  issues:
-    types:
-      - opened
+  schedule:
+    - cron: '*/30 * * * *'
+  # issues:
+  #   types:
+  #     - opened
   push:
     branches:
       - main
-  schedule:
-    - cron: '*/30 * * * *'
+
 
 jobs:
   aws-nuke:
     runs-on: ubuntu-latest
-    steps:
 
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
 
       - name: Download and Extract 
         run: |
@@ -55,4 +55,5 @@ jobs:
           #EMAIL_LIST='filip.mietka@redbull.com, henry.hernandez@redbull.com, aws.sandbox.nuke@redbull.com'
           #SUBJECT=''
         run: |
-          mail -s "AWS NUKE Output" sysadmdhruvil@gmail.com << "Attached is the output of running aws-nuke job" -A ./aws-nuke/aws-nuke.csv
+          echo "Hello"
+          # mail -s "AWS NUKE Output" sysadmdhruvil@gmail.com << "Attached is the output of running aws-nuke job" -A ./aws-nuke/aws-nuke.csv
