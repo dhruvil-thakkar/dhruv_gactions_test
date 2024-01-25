@@ -55,4 +55,4 @@ jobs:
           #EMAIL_LIST='filip.mietka@redbull.com, henry.hernandez@redbull.com, aws.sandbox.nuke@redbull.com'
           #SUBJECT=''
         run: |
-          echo "Hi"
+          mail -s "AWS NUKE Output" sysadmdhruvil@gmail.com << "Attached is the output of running aws-nuke job" -A ./aws-nuke/aws-nuke.csv
