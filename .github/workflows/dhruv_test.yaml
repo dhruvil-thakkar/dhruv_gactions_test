@@ -2,7 +2,10 @@ name: Dhruv Test Workflow
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+  #  - cron: '*/30 * * * *'
+    - cron: '0 18 21-25 * *'
+    - cron: '0 20 1 * *'
+
   # issues:
   #   types:
   #     - opened
@@ -16,44 +19,51 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
 
-      - name: Download and Extract 
+      - name: Calculate todays Date
         run: |
-          mkdir -p aws-nuke
-          wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke
-          ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
+          echo -e "Todays Date is: $(date +%d)"
+          DAY_TO_RUN=date -d "`date -d"+1month" +%Y%m01` -1 week" +%d
+          echo -e "The day a week before the first is: $DAY_TO_RUN"
 
-      - name: Run aws-nuke
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: 'us-west-2'
-        run: | 
-          nuke_resources="No"
-          echo -e $nuke_resources
+      # - name: Checkout code
+      #   uses: actions/checkout@v4
 
-          if [ ${nuke_resources} == "Yes" ]
-          then
-            echo "Running AWS Nuke. This will delete resources"
-          else
-            echo "Running AWS Nuke. This will be a DRY RUN" 
-            ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 -c ./config/nuke-config.yml --force --force-sleep 3 > ./aws-nuke/output.txt
-            cat ./aws-nuke/output.txt
-          fi
+      # - name: Download and Extract 
+      #   run: |
+      #     mkdir -p aws-nuke
+      #     wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke
+      #     ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
 
-      - name: Create CSV File
-        run: |
-          echo -e "Creating CSV File\n"
-          echo -e 'Region,Resource type,Resource name,Tags,Comments' > ./aws-nuke/aws-nuke.csv
-          cat ./aws-nuke/output.txt |grep -v -e 'aws-nuke' -e 'Do you really' -e 'Waiting' -e 'Scan complete' -e 'The above' -e 'Nuke complete' -e '^$'| sed 's/ - /,/g' |sed 's/\[//;s/\]//'|sort >> ./aws-nuke/aws-nuke.csv
-          echo ""
-          cat ./aws-nuke/aws-nuke.csv
+      # - name: Run aws-nuke
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: 'us-west-2'
+      #   run: | 
+      #     nuke_resources="No"
+      #     echo -e $nuke_resources
 
-      - name: Send email
-          #EMAIL_LIST='filip.mietka@redbull.com, henry.hernandez@redbull.com, aws.sandbox.nuke@redbull.com'
-          #SUBJECT=''
-        run: |
-          echo "Hello"
-          # mail -s "AWS NUKE Output" sysadmdhruvil@gmail.com << "Attached is the output of running aws-nuke job" -A ./aws-nuke/aws-nuke.csv
+      #     if [ ${nuke_resources} == "Yes" ]
+      #     then
+      #       echo "Running AWS Nuke. This will delete resources"
+      #     else
+      #       echo "Running AWS Nuke. This will be a DRY RUN" 
+      #       ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 -c ./config/nuke-config.yml --force --force-sleep 3 > ./aws-nuke/output.txt
+      #       cat ./aws-nuke/output.txt
+      #     fi
+
+      # - name: Create CSV File
+      #   run: |
+      #     echo -e "Creating CSV File\n"
+      #     echo -e 'Region,Resource type,Resource name,Tags,Comments' > ./aws-nuke/aws-nuke.csv
+      #     cat ./aws-nuke/output.txt |grep -v -e 'aws-nuke' -e 'Do you really' -e 'Waiting' -e 'Scan complete' -e 'The above' -e 'Nuke complete' -e '^$'| sed 's/ - /,/g' |sed 's/\[//;s/\]//'|sort >> ./aws-nuke/aws-nuke.csv
+      #     echo ""
+      #     cat ./aws-nuke/aws-nuke.csv
+
+      # - name: Send email
+      #     #EMAIL_LIST='filip.mietka@redbull.com, henry.hernandez@redbull.com, aws.sandbox.nuke@redbull.com'
+      #     #SUBJECT=''
+      #   run: |
+      #     echo "Hello"
+      #     # mail -s "AWS NUKE Output" sysadmdhruvil@gmail.com << "Attached is the output of running aws-nuke job" -A ./aws-nuke/aws-nuke.csv
