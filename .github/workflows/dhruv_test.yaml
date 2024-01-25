@@ -23,6 +23,8 @@ jobs:
          run: |
           TODAYS_DATE=$(date +%d)
           DATE_TO_NUKE=1
+          echo "Date to nuke $DATE_TO_NUKE"
+          
           echo -e "Todays Date is: $TODAYS_DATE"
           DAY_TO_RUN=$(date -d "`date -d"+1month" +%Y%m01` -1 week" +%d)
           echo -e "The day a week before the first is: $DAY_TO_RUN"
@@ -45,8 +47,8 @@ jobs:
 
        - name: Check value
          run: |
-           echo ${{ env.TO_RUN }}
-           echo ${{ env.TO_NUKE }}
+           echo "To run value is: ${{ env.TO_RUN }}"
+           echo "To nuke value is: ${{ env.TO_NUKE }}"
 
 
 
