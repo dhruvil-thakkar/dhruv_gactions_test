@@ -17,7 +17,10 @@ on:
 jobs:
   aws-nuke:
     runs-on: ubuntu-latest
-    steps:          
+    steps:        
+       - name: Checkout code
+         uses: actions/checkout@v4
+
        - name: GET Date and Check 
          run: |
           TODAYS_DATE=$(date +%d)
@@ -43,18 +46,14 @@ jobs:
               echo "Today is not the day for DRY RUN or to NUKE Resources."
           fi
 
-       - name: Checkout code
-         uses: actions/checkout@v4
-
        - name: Check value
          run: |
            echo "The DRY_RUN value is: ${{ env.DRY_RUN }}"
            echo "The TO_NUKE value is: ${{ env.TO_NUKE }}"
 
-
        - name: Download and Extract 
          run: |
-           if [ $DRY_RUN == Yes] || [ TO_NUKE == Yes ]
+           if [ $DRY_RUN == Yes ] || [ TO_NUKE == Yes ]
            then
               mkdir -p aws-nuke
               wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
