@@ -31,7 +31,7 @@ jobs:
           echo -e "Todays Date is: $TODAYS_DATE"
           DAY_TO_RUN=$(date -d "`date -d"+1month" +%Y%m01` -1 week" +%d)
           echo -e "The day a week before the first is: $DAY_TO_RUN"
-          
+
           echo -e "TO_RUN Value is: ${{ env.TO_RUN}}"
           echo -e "TO_NUKE Value is: ${{ env.TO_NUKE}}"
           
@@ -44,6 +44,8 @@ jobs:
               echo $TEST
               echo ${{ env.TEST }}
           fi
+
+          cat $$GITHUB_ENV
 
 
 
