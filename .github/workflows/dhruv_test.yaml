@@ -24,13 +24,6 @@ jobs:
           ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
 
 
-      - name: Install AWS CLI
-        uses: unfor19/install-aws-cli-action@v1
-        with:
-          version: 2                         # default
-          verbose: false                     # default
-          arch: amd64 
-
       - name: AWS CLI Test
         run: |
           aws s3 ls 
@@ -54,7 +47,7 @@ jobs:
             echo "Running AWS Nuke. This will delete resources"
           else
             echo "Running AWS Nuke. This will be a DRY RUN" 
-            ./aws-nuke/aws-nuke-v2.25.0-linux-amd64s-nuke -c ./aws-nuke/nuke-config.yml --force --force-sleep 1 > ./aws-nuke/output.txt
+            ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 -c ./aws-nuke/nuke-config.yml --force --force-sleep 1 > ./aws-nuke/output.txt
             cat ./aws-nuke/output.txt
           fi
 
