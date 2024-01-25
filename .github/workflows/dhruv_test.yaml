@@ -20,32 +20,35 @@ jobs:
 
     steps:
 
-      - name: Set up Environment Variables
-        run: |
-          echo "TO_RUN=No" >> $GITHUB_ENV
-          echo "TO_NUKE=No" >> $GITHUB_ENV
-          echo $TO_RUN 
-          echo ${{ env.TO_RUN}}
+      - name: Github ENV Test
+        run: echo "TO_RUN=Yes" >> $GITHUB_ENV
+        echo ${{ env.TO_RUN }}
+
+      # - name: Set up Environment Variables
+      #   run: |
+      #     echo "TO_RUN=No" >> $GITHUB_ENV
+      #     echo "TO_NUKE=No" >> $GITHUB_ENV
+      #     echo $TO_RUN 
+      #     echo ${{ env.TO_RUN}}
       
-          TODAYS_DATE=$(date +%d)
-          echo -e "Todays Date is: $TODAYS_DATE"
-          DAY_TO_RUN=$(date -d "`date -d"+1month" +%Y%m01` -1 week" +%d)
-          echo -e "The day a week before the first is: $DAY_TO_RUN"
+      #     TODAYS_DATE=$(date +%d)
+      #     echo -e "Todays Date is: $TODAYS_DATE"
+      #     DAY_TO_RUN=$(date -d "`date -d"+1month" +%Y%m01` -1 week" +%d)
+      #     echo -e "The day a week before the first is: $DAY_TO_RUN"
 
-          echo -e "TO_RUN Value is: ${{ env.TO_RUN}}"
-          echo -e "TO_NUKE Value is: ${{ env.TO_NUKE}}"
+      #     echo -e "TO_RUN Value is: ${{ env.TO_RUN}}"
+      #     echo -e "TO_NUKE Value is: ${{ env.TO_NUKE}}"
           
-          if [ $TODAYS_DATE == $DAY_TO_RUN ]
-            then
-              echo "TEST=Yes" >> $GITHUB_ENV
-              echo "TO_RUN=Yes" >> $GITHUB_ENV
-              echo "Inside if"
-              echo ${{ env.TO_RUN }}
-              echo $TEST
-              echo ${{ env.TEST }}
-          fi
+      #     if [ $TODAYS_DATE == $DAY_TO_RUN ]
+      #       then
+      #         echo "TEST=Yes" >> $GITHUB_ENV
+      #         echo "TO_RUN=Yes" >> $GITHUB_ENV
+      #         echo "Inside if"
+      #         echo ${{ env.TO_RUN }}
+      #         echo $TEST
+      #         echo ${{ env.TEST }}
+      #     fi
 
-          cat $$GITHUB_ENV
 
 
 
