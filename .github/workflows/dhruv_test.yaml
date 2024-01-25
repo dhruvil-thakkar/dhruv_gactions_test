@@ -31,16 +31,20 @@ jobs:
           echo -e "The day a week before the first is: $DAY_TO_RUN"
 
           TODAYS_DATE=23
-          
+
           if [ $TODAYS_DATE == $DAY_TO_RUN ]
             then
               echo "Today's Date matches Date to Run. This will invoke Dry Run"
               echo "DRY_RUN=Yes" >> $GITHUB_ENV
+              echo "TO_NUKE=No" >> $GITHUB_ENV
           elif [ $TODAYS_DATE == $DATE_TO_NUKE ]
             then
               echo "Today's Date matches Date to NUKE. Resources will be Nuked Today."
               echo "TO_NUKE=Yes" >> $GITHUB_ENV
+              echo "TO_RUN=No" >> $GITHUB_ENV
           else
+              echo "TO_NUKE=No" >> $GITHUB_ENV
+              echo "TO_RUN=No" >> $GITHUB_ENV
               echo "Today is not the day for DRY RUN or to NUKE Resources."
           fi
 
