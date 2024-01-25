@@ -4,7 +4,9 @@ regions:
   - "us-west-2"
   - "us-east-1"
   - "us-east-2"
-account-blacklist:
+
+account-blocklist:
+ - "9999999"
 
 resource-types:
   #  only nuke these resources
