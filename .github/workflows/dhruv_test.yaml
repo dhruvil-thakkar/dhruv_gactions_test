@@ -34,6 +34,12 @@ jobs:
           echo -e "The day a week before the first is: $DAY_TO_RUN"
           echo -e "TO_RUN Value is: $TO_RUN"
           echo -e "TO_NUKE Value is: $TO_NUKE"
+          
+          if [ $TODAYS_DATE == DAY_TO_RUN ]
+            then
+              echo "TO_RUN=Yes" >> $GITHUB_ENV
+              echo $TO_RUN"
+          fi
 
 
 
