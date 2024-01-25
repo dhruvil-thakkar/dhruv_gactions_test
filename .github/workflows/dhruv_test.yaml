@@ -38,6 +38,7 @@ jobs:
           if [ $TODAYS_DATE == $DAY_TO_RUN ]
             then
               echo "TO_RUN=Yes" >> $GITHUB_ENV
+              echo "Inside if"
               echo $TO_RUN
           fi
 
