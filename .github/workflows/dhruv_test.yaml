@@ -35,7 +35,7 @@ jobs:
           if [ $TODAYS_DATE == $DAY_TO_RUN ]
             then
               echo "Today's Date matches Date to Run. This will invoke Dry Run"
-              echo "TO_RUN=Yes" >> $GITHUB_ENV
+              echo "DRY_RUN=Yes" >> $GITHUB_ENV
           elif [ $TODAYS_DATE == $DATE_TO_NUKE ]
             then
               echo "Today's Date matches Date to NUKE. Resources will be Nuked Today."
@@ -49,18 +49,21 @@ jobs:
 
        - name: Check value
          run: |
-           echo "To run value is: ${{ env.TO_RUN }}"
-           echo "To nuke value is: ${{ env.TO_NUKE }}"
+           echo "The DRY_RUN value is: ${{ env.DRY_RUN }}"
+           echo "The TO_NUKE value is: ${{ env.TO_NUKE }}"
 
 
-
-
-
-      # - name: Download and Extract 
-      #   run: |
-      #     mkdir -p aws-nuke
-      #     wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke
-      #     ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
+      - name: Download and Extract 
+        run: |
+          if [ $DRY_RUN == Yes] || [ TO_NUKE == Yes ]
+          then
+             mkdir -p aws-nuke
+             wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke
+          ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
+          else
+             echo "Not to execute DRY RUN or NUKE Today!"
+          fi
+          
 
       # - name: Run aws-nuke
       #   env:
