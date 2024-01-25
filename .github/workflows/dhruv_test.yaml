@@ -45,7 +45,7 @@ jobs:
         run: |
           echo -e "Creating CSV File\n"
           echo -e 'Region,Resource type,Resource name,Identifier, AMI, InstanceState, InstanceType,LaunchTime,Tags,Comments' > ./aws-nuke/aws-nuke.csv
-          cat ./aws-nuke/output.txt | grep -v -e 'aws-nuke' -e 'Do you really' -e 'Waiting 3s before continuing' -e 'Scan complete' -e 'The above resources would be deleted with the supplied configuration' -e 'Nuke complete' -e '^$'| sed 's/ - /,/g'  |sed 's/\[//;s/\]//'|sort >> ./aws-nuke/aws-nuke.csv
+          cat ./aws-nuke/output.txt |grep -v -e 'aws-nuke' -e 'Do you really' -e 'Waiting' -e 'Scan complete' -e 'The above' -e 'Nuke complete' -e '^$'| sed 's/ - /,/g' |sed 's/\[//;s/\]//'|sort >> ./aws-nuke/aws-nuke.csv
           echo ""
           cat ./aws-nuke/aws-nuke.csv
 
