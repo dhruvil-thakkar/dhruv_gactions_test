@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - 36 22 * * *
 
 jobs:
   aws-nuke:
@@ -44,7 +46,7 @@ jobs:
       - name: Create CSV File
         run: |
           echo -e "Creating CSV File\n"
-          echo -e 'Region,Resource type,Resource name,Identifier, AMI, InstanceState, InstanceType,LaunchTime,Tags,Comments' > ./aws-nuke/aws-nuke.csv
+          echo -e 'Region,Resource type,Resource name,Tags,Comments' > ./aws-nuke/aws-nuke.csv
           cat ./aws-nuke/output.txt |grep -v -e 'aws-nuke' -e 'Do you really' -e 'Waiting' -e 'Scan complete' -e 'The above' -e 'Nuke complete' -e '^$'| sed 's/ - /,/g' |sed 's/\[//;s/\]//'|sort >> ./aws-nuke/aws-nuke.csv
           echo ""
           cat ./aws-nuke/aws-nuke.csv
