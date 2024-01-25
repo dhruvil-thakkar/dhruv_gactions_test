@@ -50,5 +50,7 @@ jobs:
           cat ./aws-nuke/aws-nuke.csv
 
       - name: Send email
-        EMAIL_LIST='filip.mietka@redbull.com, henry.hernandez@redbull.com, aws.sandbox.nuke@redbull.com'
-        SUBJECT=''
+          #EMAIL_LIST='filip.mietka@redbull.com, henry.hernandez@redbull.com, aws.sandbox.nuke@redbull.com'
+          #SUBJECT=''
+        run: |
+          echo "Hi"
