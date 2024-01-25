@@ -47,7 +47,7 @@ jobs:
             echo "Running AWS Nuke. This will delete resources"
           else
             echo "Running AWS Nuke. This will be a DRY RUN" 
-            ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 -c ./aws-nuke/nuke-config.yml --force --force-sleep 1 > ./aws-nuke/output.txt
+            ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 -c ./config/nuke-config.yml --force --force-sleep 1 > ./aws-nuke/output.txt
             cat ./aws-nuke/output.txt
           fi
 
