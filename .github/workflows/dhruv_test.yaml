@@ -23,6 +23,8 @@ jobs:
          run: |
            echo "RUN_TEST=No" >> $GITHUB_ENV 
            echo "NUKE_TEST=No" >> $GITHUB_ENV
+           echo "${{ env.RUN_TEST }}"
+           echo "${{ env.NUKE_TEST }}"
 
        - name: Get Variables
          run: |
