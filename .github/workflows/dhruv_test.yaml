@@ -23,7 +23,7 @@ jobs:
       - name: Calculate todays Date
         run: |
           echo -e "Todays Date is: $(date +%d)"
-          DAY_TO_RUN=date -d "`date -d"+1month" +%Y%m01` -1 week" +%d
+          DAY_TO_RUN=$(date -d "`date -d"+1month" +%Y%m01` -1 week" +%d)
           echo -e "The day a week before the first is: $DAY_TO_RUN"
 
       # - name: Checkout code
