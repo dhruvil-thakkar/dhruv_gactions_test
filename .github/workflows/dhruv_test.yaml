@@ -20,15 +20,21 @@ jobs:
 
     steps:
 
+      - name: Set up Environment Variables
+        run: |
+          echo "TO_RUN=No" >> $GITHUB_ENV
+          echo "TO_NUKE=No" >> $GITHUB_ENV
+        
+
       - name: Calculate Todays Date
         run: |
           TODAYS_DATE=$(date +%d)
-          echo $TODAYS_DATE
           echo -e "Todays Date is: $TODAYS_DATE"
           DAY_TO_RUN=$(date -d "`date -d"+1month" +%Y%m01` -1 week" +%d)
           echo -e "The day a week before the first is: $DAY_TO_RUN"
+          echo -e "TO_RUN Value is: $TO_RUN"
+          echo -e "TO_NUKE Value is: $TO_NUKE"
 
- 
 
 
       # - name: Checkout code
