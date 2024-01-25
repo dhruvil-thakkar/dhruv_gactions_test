@@ -5,7 +5,6 @@ on:
   #  - cron: '*/30 * * * *'
     - cron: '0 18 21-25 * *'
     - cron: '0 20 1 * *'
-
   # issues:
   #   types:
   #     - opened
@@ -31,8 +30,7 @@ jobs:
           DAY_TO_RUN=$(date -d "`date -d"+1month" +%Y%m01` -1 week" +%d)
           echo -e "The day a week before the first is: $DAY_TO_RUN"
 
-          # echo -e "TO_RUN Value is: ${{ env.RUN_TEST }}"
-          # echo -e "TO_NUKE Value is: ${{ env.NUKE_TEST }}"
+          TODAYS_DATE=23
           
           if [ $TODAYS_DATE == $DAY_TO_RUN ]
             then
