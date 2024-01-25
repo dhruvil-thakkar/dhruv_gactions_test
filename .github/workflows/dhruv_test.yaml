@@ -20,11 +20,12 @@ jobs:
 
     steps:
 
-      - name: Github ENV Test
-        run: |
-          echo "TO_RUN=Yes" >> $GITHUB_ENV
-          echo ${{ env.TO_RUN }}
+      - name: Set Environment Variable
+        run: echo "MY_VARIABLE=Hello, GitHub Actions!" >> $GITHUB_ENV
 
+      - name: Use Environment Variable
+        run: echo "Value of MY_VARIABLE is ${{ env.MY_VARIABLE }}"
+      
       # - name: Set up Environment Variables
       #   run: |
       #     echo "TO_RUN=No" >> $GITHUB_ENV
