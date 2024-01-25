@@ -24,7 +24,7 @@ jobs:
           echo "RUN_TEST=No" >> $GITHUB_ENV
           echo "NUKE_TEST=No" >> $GITHUB_ENV
           echo $RUN_TEST
-          echo ${{ env.RUN_TEST }}
+          echo "${{ env.RUN_TEST }}"
       
           TODAYS_DATE=$(date +%d)
           echo -e "Todays Date is: $TODAYS_DATE"
