@@ -22,11 +22,13 @@ jobs:
        - name: Setup Environment Variables
          run: |
            echo "RUN_TEST=No" >> $GITHUB_ENV 
+           echo "NUKE_TEST=No" >> $GITHUB_ENV
 
        - name: Get Variables
          run: |
            echo "${{ env.RUN_TEST }}"
-           
+           echo "${{ env.NUKE_TEST }}"
+
       # - name: Set up Environment Variables
       #   run: |
           # echo "RUN_TEST=No" >> $GITHUB_ENV
