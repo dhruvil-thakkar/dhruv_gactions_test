@@ -46,16 +46,16 @@ jobs:
                 
                 cat ./aws-nuke/issue-form-config.yaml
 
-                if [ $nuke_resources == No ]
-                then
-                  echo "DRY_RUN=Yes" >> $GITHUB_ENV
-                  echo "TO_NUKE=No" >> $GITHUB_ENV
-                  echo "This will be DRY RUN executed from Issue Template"
-                else
-                  echo "DRY_RUN=No" >> $GITHUB_ENV
-                  echo "TO_NUKE=Yes" >> $GITHUB_ENV
-                  echo "This will NUKE Resources executed from Issue Template"
-                fi
+                # if [ $nuke_resources == No ]
+                # then
+                #   echo "DRY_RUN=Yes" >> $GITHUB_ENV
+                #   echo "TO_NUKE=No" >> $GITHUB_ENV
+                #   echo "This will be DRY RUN executed from Issue Template"
+                # else
+                #   echo "DRY_RUN=No" >> $GITHUB_ENV
+                #   echo "TO_NUKE=Yes" >> $GITHUB_ENV
+                #   echo "This will NUKE Resources executed from Issue Template"
+                # fi
 
 
       #  - name: GET Current Date and Check if Today will be Dry Run or Nuke Run
