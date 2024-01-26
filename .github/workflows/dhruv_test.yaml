@@ -22,7 +22,7 @@ jobs:
 
        - name: Input Check   
          run: |
-             if [ ${{ github.event_name }} == "issues" ]
+             if [ ${{ github.event_name }} == issues ]
              then
                echo ${{ github.event_name }}
                payload_body="${{ github.event.issue.body }}"

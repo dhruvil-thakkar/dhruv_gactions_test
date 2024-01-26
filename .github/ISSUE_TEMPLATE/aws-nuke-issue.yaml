@@ -16,7 +16,9 @@ body:
     attributes:
       label: Account to Nuke AWS Services
       description: Enter the account number from which you want to nuke AWS Services
-      placeholder: "381492150661"
+      placeholder: "216280292334"
+    validations:
+      required: true
 
   - type: dropdown
     id: nuke-resources
