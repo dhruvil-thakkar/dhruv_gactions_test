@@ -23,19 +23,26 @@ jobs:
        - name: Input Check   
          run: |
              if [ ${{ github.event_name }} == issues ]
-             then
-               echo ${{ github.event_name }}
-               payload_body="${{ github.event.issue.body }}"
-               echo "$payload_body"
-               account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
-               echo $account
-               nuke_resources=$(echo "$payload_body" | grep -A2 "### Do you want to run Dry Run" | tail -n1)
-               echo $nuke_resources
-               mkdir -p aws-nuke
-               echo "CONFIG_FILE=./aws-nuke/issue-form-config.yaml" >> $GITHUB_ENV
-               touch ./aws-nuke/issue-form-config.yaml
-               echo "HI" > ./aws-nuke/issue-form-config.yaml
-               cat ./aws-nuke/issue-form-config.yaml
+              then
+                echo ${{ github.event_name }}
+                payload_body="${{ github.event.issue.body }}"
+                echo "$payload_body"
+                account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
+                echo $account
+                nuke_resources=$(echo "$payload_body" | grep -A2 "### Do you want to run Dry Run" | tail -n1)
+                echo $nuke_resources
+                mkdir -p aws-nuke
+                echo "CONFIG_FILE=./aws-nuke/issue-form-config.yaml" >> $GITHUB_ENV
+
+                cat > ./aws-nuke/issue-form-config.yaml <<EOF
+                ---
+                This is Dhruv
+                <EOF
+
+                #touch ./aws-nuke/issue-form-config.yaml
+                #echo "HI" > ./aws-nuke/issue-form-config.yaml
+                
+                cat ./aws-nuke/issue-form-config.yaml
              fi
 
 
