@@ -22,51 +22,58 @@ jobs:
 
        - name: Input Check   
          run: |
-             echo ${{ github.event_name }}
+             if [ ${{ github.event_name == "issues"}}]
+             then
+               echo ${{ github.event_name }}
+               payload_body="${{ github.event.issue.body }}"
+               echo "$payload_body"
+               echo "Inside If"
+             fi
 
-       - name: GET Current Date and Check if Today will be Dry Run or Nuke Run
-         run: |
-          TODAYS_DATE=$(date +%d)
-          DATE_TO_NUKE=1
-          echo "Date to nuke $DATE_TO_NUKE"
 
-          date
+      #  - name: GET Current Date and Check if Today will be Dry Run or Nuke Run
+      #    run: |
+      #     TODAYS_DATE=$(date +%d)
+      #     DATE_TO_NUKE=1
+      #     echo "Date to nuke $DATE_TO_NUKE"
 
-          echo -e "Todays Date is: $TODAYS_DATE"
-          DAY_TO_RUN=$(date -d "`date -d"+1month" +%Y%m01` -1 week" +%d)
-          echo -e "The day a week before the first is: $DAY_TO_RUN"
+      #     date
 
-          if [ $TODAYS_DATE == $DAY_TO_RUN ]
-            then
-              echo "Today's Date matches Date to Run. This will invoke Dry Run"
-              echo "DRY_RUN=Yes" >> $GITHUB_ENV
-              echo "TO_NUKE=No" >> $GITHUB_ENV
-          elif [ $TODAYS_DATE == $DATE_TO_NUKE ]
-            then
-              echo "Today's Date matches Date to NUKE. Resources will be Nuked Today."
-              echo "TO_NUKE=Yes" >> $GITHUB_ENV
-              echo "DRY_RUN=No" >> $GITHUB_ENV
-          else
-              echo "TO_NUKE=No" >> $GITHUB_ENV
-              echo "DRY_RUN=No" >> $GITHUB_ENV
-              echo "Today is not the day for DRY RUN or to NUKE Resources."
-          fi
+      #     echo -e "Todays Date is: $TODAYS_DATE"
+      #     DAY_TO_RUN=$(date -d "`date -d"+1month" +%Y%m01` -1 week" +%d)
+      #     echo -e "The day a week before the first is: $DAY_TO_RUN"
 
-       - name: Check value
-         run: |
-           echo "The DRY_RUN value is: ${{ env.DRY_RUN }}"
-           echo "The TO_NUKE value is: ${{ env.TO_NUKE }}"
+      #     if [ $TODAYS_DATE == $DAY_TO_RUN ]
+      #       then
+      #         echo "Today's Date matches Date to Run. This will invoke Dry Run"
+      #         echo "DRY_RUN=Yes" >> $GITHUB_ENV
+      #         echo "TO_NUKE=No" >> $GITHUB_ENV
+      #     elif [ $TODAYS_DATE == $DATE_TO_NUKE ]
+      #       then
+      #         echo "Today's Date matches Date to NUKE. Resources will be Nuked Today."
+      #         echo "TO_NUKE=Yes" >> $GITHUB_ENV
+      #         echo "DRY_RUN=No" >> $GITHUB_ENV
+      #     else
+      #         echo "TO_NUKE=No" >> $GITHUB_ENV
+      #         echo "DRY_RUN=No" >> $GITHUB_ENV
+      #         echo "Today is not the day for DRY RUN or to NUKE Resources."
+      #     fi
 
-       - name: Download and Extract 
-         run: |
-           if [ $DRY_RUN == Yes ] || [ TO_NUKE == Yes ]
-           then
-              mkdir -p aws-nuke
-              wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke 
-              ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
-           else
-             echo "Not to execute DRY RUN or NUKE Today!"
-           fi
+      #  - name: Check value
+      #    run: |
+      #      echo "The DRY_RUN value is: ${{ env.DRY_RUN }}"
+      #      echo "The TO_NUKE value is: ${{ env.TO_NUKE }}"
+
+      #  - name: Download and Extract 
+      #    run: |
+      #      if [ $DRY_RUN == Yes ] || [ TO_NUKE == Yes ]
+      #      then
+      #         mkdir -p aws-nuke
+      #         wget -c https://github.com/rebuy-de/aws-nuke/releases/download/v2.25.0/aws-nuke-v2.25.0-linux-amd64.tar.gz -O - | tar -xz -C aws-nuke 
+      #         ./aws-nuke/aws-nuke-v2.25.0-linux-amd64 --help
+      #      else
+      #        echo "Not to execute DRY RUN or NUKE Today!"
+      #      fi
 
 
       # - name: Run aws-nuke

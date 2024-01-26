@@ -9,7 +9,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        **Please complete the following form to use the AWS Nuke Servie. By default all the resources in the regions specified will be nuked. If you specify Target Resources, only those resources will be nuked. If you specify Excluded Resources, then everything else but those excluded resources will be nuked**
+        **Please complete the following form to use the AWS Nuke Servie. Enter Account Number. Default account number would be 381492150661**
 
   - type: input
     id: account_tonuke
@@ -21,8 +21,8 @@ body:
   - type: dropdown
     id: nuke-resources
     attributes:
-      label: Nuke Resources?
-      description: By Default - It will run a dry-run and won't nuke resources. Select Yes below to actually nuke resources
+      label: Do you want to run Dry Run or actually Nuke Resources? 
+      description: Select Default option No for Dry Run. Select Yes below to actually nuke resources
       multiple: false
       options:
         - "No"
