@@ -55,7 +55,7 @@ jobs:
                   echo "DRY_RUN=No" >> $GITHUB_ENV
                   echo "TO_NUKE=Yes" >> $GITHUB_ENV
                   echo "This will NUKE Resources executed from Issue Template"
-             fi
+                fi
 
 
       #  - name: GET Current Date and Check if Today will be Dry Run or Nuke Run
