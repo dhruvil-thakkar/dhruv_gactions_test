@@ -33,10 +33,9 @@ jobs:
                echo $nuke_resources
                mkdir -p aws-nuke
                echo "CONFIG_FILE=./aws-nuke/issue-form-config.yaml" >> $GITHUB_ENV
-               cat > ./aws-nuke/aws-nuke-config.yaml <<EOF
-               ---
-               <EOF
-                cat ./aws-nuke/issue-form-config.yaml
+               touch ./aws-nuke/issue-form-config.yaml
+               echo "HI" ./aws-nuke/issue-form-config.yaml
+               cat ./aws-nuke/issue-form-config.yaml
              fi
 
 
