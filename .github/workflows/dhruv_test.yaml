@@ -20,7 +20,7 @@ jobs:
        - name: Checkout code
          uses: actions/checkout@v4
 
-       - name: GET Date and Check 
+       - name: GET Current Date and Check if Today will be Dry Run or Nuke Run
          run: |
           TODAYS_DATE=$(date +%d)
           DATE_TO_NUKE=1
