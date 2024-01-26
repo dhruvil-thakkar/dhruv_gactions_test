@@ -35,25 +35,7 @@ jobs:
                echo "CONFIG_FILE=./aws-nuke/issue-form-config.yaml" >> $GITHUB_ENV
                cat > ./aws-nuke/aws-nuke-config.yaml <<EOF
                ---
-               regions:
-                 - global
-               account-blacklist:
-               - 631346502955
-               - 771427977398
-               - 294630680963
-               - 065651352966
-               - 149321076751
-               - 306340782601
-               - 320460626817
-               - 418340538962
-               - 609794691195
-               - 831452073949
-               - 902262931558
-               resource-types:
-               targets:
-               accounts:
-               $(echo "$accounts" | sed 's/[^ ]* */  - &\n/g')
-               EOF
+               <EOF
                 cat ./aws-nuke/issue-form-config.yaml
              fi
 
