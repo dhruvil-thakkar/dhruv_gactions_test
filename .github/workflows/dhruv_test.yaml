@@ -5,12 +5,12 @@ on:
   #  - cron: '*/30 * * * *'
     - cron: '0 18 21-25 * *'
     - cron: '0 20 1 * *'
-  # issues:
-  #   types:
-  #     - opened
-  push:
-    branches:
-      - main
+  issues:
+    types:
+      - opened
+  # push:
+  #   branches:
+  #     - main
 
 
 jobs:
@@ -19,6 +19,10 @@ jobs:
     steps:        
        - name: Checkout code
          uses: actions/checkout@v4
+
+       - name: Input Check   
+         run: |
+             echo ${{ github.event_name }}
 
        - name: GET Current Date and Check if Today will be Dry Run or Nuke Run
          run: |
