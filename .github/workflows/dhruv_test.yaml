@@ -70,9 +70,8 @@ jobs:
                     - RDSSnapshot
                     - DynamoDBTableItem
                     - DynamoDBTable
-
                   accounts:
-                  $(echo "$accounts" | sed 's/[^ ]* */  - &\n/g')
+                    $(echo "$accounts" | sed 's/[^ ]* */  - &\n/g')
                   EOF
                   cat ./aws-nuke/issue-form-config.yaml
              fi
