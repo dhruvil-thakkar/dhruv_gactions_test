@@ -34,7 +34,7 @@ jobs:
                mkdir -p aws-nuke
                echo "CONFIG_FILE=./aws-nuke/issue-form-config.yaml" >> $GITHUB_ENV
                touch ./aws-nuke/issue-form-config.yaml
-               echo "HI" ./aws-nuke/issue-form-config.yaml
+               echo "HI" > ./aws-nuke/issue-form-config.yaml
                cat ./aws-nuke/issue-form-config.yaml
              fi
 
