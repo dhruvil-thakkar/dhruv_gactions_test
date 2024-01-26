@@ -29,8 +29,52 @@ jobs:
                echo "$payload_body"
                account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
                echo $account
-               nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
+               nuke_resources=$(echo "$payload_body" | grep -A2 "### Do you want to run Dry Run" | tail -n1)
                echo $nuke_resources
+               mkdir -p aws-nuke
+               echo "CONFIG_FILE=./aws-nuke/issue-form-config.yaml" >> $GITHUB_ENV
+               cat > ./aws-nuke/issue-form-config.yaml <<EOF
+               ---
+               regions:
+                  - "us-west-1"
+                  - "us-west-2"
+                  - "us-east-1"
+                  - "us-east-2"
+               account-blacklist:
+                  - 631346502955
+                  - 771427977398
+                  - 294630680963
+                  - 065651352966
+                  - 149321076751
+                  - 306340782601
+                  - 320460626817
+                  - 418340538962
+                  - 609794691195
+                  - 831452073949
+                  - 902262931558
+                resource-types:
+                    #  only nuke these resources
+                    targets:
+                    - EC2Image
+                    - EC2Instance
+                    - EC2Volume
+                    #- EC2SecurityGroup
+                    - EC2Snapshot
+                    - S3Bucket
+                    - S3Object
+                    - RDSDBCluster
+                    #- RDSDBClusterParameterGroup
+                    #- RDSDBParameterGroup
+                    - RDSDBSubnetGroup
+                    - RDSInstance
+                    - RDSSnapshot
+                    - DynamoDBTableItem
+                    - DynamoDBTable
+
+                  accounts:
+                  $(echo "$accounts" | sed 's/[^ ]* */  - &\n/g')
+                  EOF
+                  cat ./aws-nuke/issue-form-config.yaml
              fi
 
 
