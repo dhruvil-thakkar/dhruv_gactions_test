@@ -16,30 +16,7 @@ body:
     attributes:
       label: Account to Nuke AWS Services
       description: Enter the account number from which you want to nuke AWS Services
-    validations:
-      required: true
-
-  - type: input
-    id: regions
-    attributes:
-      label: Regions
-      description: Space limit regions for input
-
-  - type: input
-    id: excluded_resources
-    attributes:
-      label: Excluded Resources
-      description: By Default, everything is included and nothing is excluded. Enter excluded resource types if you want to 
-    validations:
-      required: false
-
-  - type: input
-    id: target_resources
-    attributes:
-      label: Target Resources Types
-      description: By default, everything will be nuked. Enter Target resources if you want to remove just specific resource types. You can find resource types in resource-types File
-    validations:
-      required: false
+      placeholder: "381492150661"
 
   - type: dropdown
     id: nuke-resources
