@@ -41,8 +41,8 @@ jobs:
                 echo -e "631346502955 771427977398 294630680963 065651352966 149321076751 306340782601 320460626817 418340538962 609794691195 831452073949 902262931558" |sed 's/[^ ]* */  - &\n/g' >> ./aws-nuke/issue-form-config.yaml
                 echo -e "resource-types:\ntargets:" >> ./aws-nuke/issue-form-config.yaml
                 echo -e "EC2Image EC2Instance EC2Volume EC2Snapshot S3Bucket S3Object RDSDBCluster RDSDBSubnetGroup RDSInstance RDSSnapshot DynamoDBTableItem DynamoDBTable" |sed 's/[^ ]* */  - &\n/g' >> ./aws-nuke/issue-form-config.yaml
-                echo -e "accounts:" >> ./aws-nuke/issue-form-config.yaml
-                echo "$account" >> ./aws-nuke/issue-form-config.yaml
+                echo -e "accounts:\n" >> ./aws-nuke/issue-form-config.yaml
+                echo -e "$account" >> ./aws-nuke/issue-form-config.yaml
                 
                 cat ./aws-nuke/issue-form-config.yaml
 
