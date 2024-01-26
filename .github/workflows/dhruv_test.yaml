@@ -27,7 +27,10 @@ jobs:
                echo ${{ github.event_name }}
                payload_body="${{ github.event.issue.body }}"
                echo "$payload_body"
-               echo "Inside If"
+               account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
+               echo $account
+               nuke_resources=$(echo "$payload_body" | grep -A2 "### Nuke Resources" | tail -n1)
+               echo $nuke_resources
              fi
 
 
