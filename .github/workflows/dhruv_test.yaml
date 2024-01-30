@@ -3,8 +3,7 @@ name: Dhruv Test Workflow
 on:
   schedule:
    # - cron: '*/20 * * * *'
-    - cron: '0 02 30 * *'
-    - cron: '0 04 31-1 * *'
+    - cron: '0 04 31,1,2 * *'
   issues:
     types:
       - opened
