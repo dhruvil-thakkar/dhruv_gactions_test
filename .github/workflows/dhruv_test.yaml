@@ -7,9 +7,9 @@ on:
   issues:
     types:
       - opened
- # push:
-  #  branches:
-   #   - main
+  push:
+    branches:
+      - main
 
 
 jobs:
@@ -60,7 +60,7 @@ jobs:
 
        - name: GET Current Date and Check if Today will be Dry Run or Nuke Run
          run: |
-            if [ ${{ github.event_name }} == schedule ]
+            if [ ${{ github.event_name }} == schedule ] 
             then
               echo "CONFIG_FILE=./config/nuke-config.yml" >> $GITHUB_ENV
               TODAYS_DATE=$(date +%d)
@@ -90,6 +90,7 @@ jobs:
 
        - name: Check values of DRY_RUN TO_NUKE and CONFIG_FILE
          run: |
+           echo $(date)
            echo "The DRY_RUN value is: ${{ env.DRY_RUN }}"
            echo "The TO_NUKE value is: ${{ env.TO_NUKE }}"
            echo "The CONFIG_FILE value is ${{ env.CONFIG_FILE }}"
@@ -133,8 +134,8 @@ jobs:
       #     cat ./aws-nuke/aws-nuke.csv
 
       # - name: Send email
-      #     #EMAIL_LIST='filip.mietka@redbull.com, henry.hernandez@redbull.com, aws.sandbox.nuke@redbull.com'
+      #     #EMAIL_LIST='abc@xyz.com'
       #     #SUBJECT=''
       #   run: |
       #     echo "Hello"
-      #     # mail -s "AWS NUKE Output" sysadmdhruvil@gmail.com << "Attached is the output of running aws-nuke job" -A ./aws-nuke/aws-nuke.csv
+      #     # mail -s "AWS NUKE Output" abc@xyz.com << "Attached is the output of running aws-nuke job" -A ./aws-nuke/aws-nuke.csv
