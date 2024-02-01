@@ -60,7 +60,7 @@ jobs:
 
        - name: GET Current Date and Check if Today will be Dry Run or Nuke Run
          run: |
-            if [ ${{ github.event_name }} == push ]
+            if [ ${{ github.event_name }} == schedule ]
             then
               echo "CONFIG_FILE=./config/nuke-config.yml" >> $GITHUB_ENV
               TODAYS_DATE=$(date +%d)
