@@ -7,9 +7,9 @@ on:
   issues:
     types:
       - opened
-  push:
-    branches:
-      - main
+ # push:
+  #  branches:
+   #   - main
 
 
 jobs:
