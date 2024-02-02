@@ -138,4 +138,4 @@ jobs:
       #     #SUBJECT=''
       #   run: |
       #     echo "Hello"
-      #     # mail -s "AWS NUKE Output" abc@xyz.com << "Attached is the output of running aws-nuke job" -A ./aws-nuke/aws-nuke.csv
+      #     # mail -s "AWS NUKE Output" sysadmdhruvil@gmail.com << "Attached is the output of running aws-nuke job" -A ./aws-nuke/aws-nuke.csv
