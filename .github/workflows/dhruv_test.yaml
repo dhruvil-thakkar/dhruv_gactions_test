@@ -19,48 +19,10 @@ jobs:
        - name: Checkout code
          uses: actions/checkout@v4
 
-       - name: Input Check   
-         run: |
-             if [ ${{ github.event_name }} == issues ]
-              then
-                echo ${{ github.event_name }}
-                payload_body="${{ github.event.issue.body }}"
-                echo "$payload_body"
-                account=$(echo "$payload_body" |grep -A2 "### Account to Nuke AWS Services" | tail -n1)
-                echo $account
-                nuke_resources=$(echo "$payload_body" | grep -A2 "### Do you want to run Dry Run" | tail -n1)
-                echo $nuke_resources
-                mkdir -p aws-nuke
-                echo "CONFIG_FILE=./aws-nuke/issue-form-config.yaml" >> $GITHUB_ENV
-
-                touch ./aws-nuke/issue-form-config.yaml
-                echo -e "---\nregions:" >> ./aws-nuke/issue-form-config.yaml
-                echo -e "us-west-1 us-west-2 us-east-1 us-east-2" |sed 's/[^ ]* */  - &\n/g' >> ./aws-nuke/issue-form-config.yaml
-                echo -e "account-blocklist:" >> ./aws-nuke/issue-form-config.yaml
-                echo -e "631346502955 771427977398 294630680963 065651352966 149321076751 306340782601 320460626817 418340538962 609794691195 831452073949 902262931558" |sed 's/[^ ]* */  - &\n/g' >> ./aws-nuke/issue-form-config.yaml
-                echo -e "resource-types:\ntargets:" >> ./aws-nuke/issue-form-config.yaml
-                echo -e "EC2Image EC2Instance EC2Volume EC2Snapshot S3Bucket S3Object RDSDBCluster RDSDBSubnetGroup RDSInstance RDSSnapshot DynamoDBTableItem DynamoDBTable" |sed 's/[^ ]* */  - &\n/g' >> ./aws-nuke/issue-form-config.yaml
-                echo -e "accounts:" >> ./aws-nuke/issue-form-config.yaml
-                echo -e "$account" >> ./aws-nuke/issue-form-config.yaml
-                
-                cat ./aws-nuke/issue-form-config.yaml
-
-                if [ $nuke_resources == No ]
-                then
-                  echo "DRY_RUN=Yes" >> $GITHUB_ENV
-                  echo "TO_NUKE=No" >> $GITHUB_ENV
-                  echo "This will be DRY RUN executed from Issue Template"
-                else
-                  echo "DRY_RUN=No" >> $GITHUB_ENV
-                  echo "TO_NUKE=Yes" >> $GITHUB_ENV
-                  echo "This will NUKE Resources executed from Issue Template"
-                fi
-             fi
-
 
        - name: GET Current Date and Check if Today will be Dry Run or Nuke Run
          run: |
-            if [ ${{ github.event_name }} == schedule ] 
+            if [ ${{ github.event_name }} == schedule ] || [ ${{ github.event_name }} == push ]
             then
               echo "CONFIG_FILE=./config/nuke-config.yml" >> $GITHUB_ENV
               TODAYS_DATE=$(date +%d)
